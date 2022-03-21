@@ -15,3 +15,9 @@
 ![Error Screenshot](./errors_encountered/ModuleParseFailed.png, "Error")
 ![Error Screenshot Message](./errors_encountered/ModuleParseFailed_error.png, "Error Message")
 ![Error Screenshot Code](./errors_encountered/ModuleParseFailed_error_code.png, "Error Code")
+
+
+## SignInForm - Contexts
+
+* BUG: username is not defined - Sign In not working after contexts refactor
+* Solution: make sure to call context object with () brackets useSetCurrentuser();
