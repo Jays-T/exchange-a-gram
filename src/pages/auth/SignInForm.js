@@ -20,34 +20,33 @@ import { useSetCurrentUser } from "../../context/CurrentUserContext";
 function SignInForm() {
     const setCurrentUser = useSetCurrentUser();
 
+    const [errors, setErrors] = useState({});
 
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
-        });
-        const { username, password } = signInData;
+      });
+    const { username, password } = signInData;
 
-        const [errors, setErrors] = useState({});
+    const history = useHistory();
 
-        const history = useHistory();
+    const handleChange = (event) => {
+      setSignInData({
+          ...signInData,
+          [event.target.name]: event.target.value,
+      });
+    };
 
-        const handleChange = (event) => {
-        setSignInData({
-            ...signInData,
-            [event.target.name]: event.target.value,
-        });
-        };
-
-        const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const {data} = await axios.post("/dj-rest-auth/login/", signInData);
-            setCurrentUser(data.user);
-            history.push("/");
-        } catch (err) {
-            setErrors(err.response?.data);
-        }
-        };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+        setCurrentUser(data.user);
+        history.push("/");
+      } catch (err) {
+        setErrors(err.response?.data);
+      }
+    };
 
   return (
     <Row className={styles.Row}>
