@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import appStyles from "../../App.module.css";
+import Post from "./Post";
 
 function PostPage() {
     const { id } = useParams();
@@ -13,7 +14,7 @@ function PostPage() {
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{ data: post }] = await Promise.all([
+                const [{ data: post }, { data: comments }] = await Promise.all([
                     axiosReq.get(`/posts/${id}`),
                     axios.get(`/comments/?post=${id}`),
                 ]);
@@ -30,7 +31,7 @@ function PostPage() {
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
                 <p>Popular profiles for mobile</p>
-                <p>Post component</p>
+                <Post {...post.results[0]} setPosts={setPost} />
                 <Container className={appStyles.Content}>
                     Comments
                 </Container>
