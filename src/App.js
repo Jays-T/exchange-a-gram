@@ -56,6 +56,7 @@ function App() {
               <Route render={() => <h1>Page Not Found!</h1>} />
             </Switch>
             
+          <a href="https://www.flaticon.com/free-icons/exchange-ideas" title="exchange ideas icons">Exchange ideas icons created by Flat Icons - Flaticon</a>
           </Container>
         </div>
       
